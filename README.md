@@ -1,4 +1,4 @@
-# <img src=".github/assets/logo.png" alt="Ampler Logo" align="right" width="150px"> BNALauncher v1.4.00
+# <img src=".github/assets/logo.png" alt="HeloX Launcher Logo" align="right" width="150px"> HeloX Launcher v1.4.00
  A cool Minecraft-themed launcher for EaglerCraft!<br>
  Containing some of the best clients all in one place!
 
@@ -29,7 +29,7 @@
 
 - [ ] Add the servers screen
 - [ ] Add Credits screen
-- [ ] Add Settings screen
+- [x] Add Settings screen
 - [x] Rewrite some of the CSS and JS
 - [x] Organize code, and add comments
 - [ ] Add a customizable launcher selector

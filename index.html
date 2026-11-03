@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNALauncher</title>
+    <title>HeloX Launcher</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" media="screen and (max-width: 1100px)" href="css/screensize.css">
     <link rel="stylesheet" media="screen and (max-height: 550px)" href="css/screensize.css">
@@ -12,9 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- Discord -->
-    <meta content="BNALauncher" property="og:title">
-    <meta content="A cool minecraft themed launcher for EaglerCraft!" property="og:description">
+    <meta content="HeloX Launcher" property="og:title">
+    <meta content="A Minecraft-themed launcher for EaglerCraft." property="og:description">
     <meta content="https://bna-launcher.vercel.app/" property="og:url">
     <meta content="https://irv77.github.io/AmplerLauncher/assets/images/logo.png" property="og:image">
     <meta content="#786d81" data-react-helmet="true" name="theme-color">
@@ -25,9 +24,9 @@
     <meta name="description" content="This is a modern Minecraft styled EaglerCraft launcher application">
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="BNALauncher">
+    <meta name="application-name" content="HeloX Launcher">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="BNALauncher">
+    <meta name="apple-mobile-web-app-title" content="HeloX Launcher">
 </head>
 
 <body>
@@ -45,9 +44,6 @@
         </div>
     </div>
     <div class="sidebar" id="sidebar">
-        <div id="gtabs1" class="sidebarOptions" style="gap: 1vw;" onclick="location.href='https://discord.gg/xuu8TnSY4b'">
-            <img src="./assets/images/sidebar/m-discord.png"><div class="gTabsText"><p>Discord</p></div>
-        </div>
         <div onclick="webedition()" id="gtabs2" class="sidebarOptions selected">
             <img src="./assets/images/sidebar/i-web.png">
             <div class="gTabsText">
@@ -72,13 +68,14 @@
         <div id="gtabs5" class="sidebarOptions sidebarBottom" onclick="errorNA('credits')">
             <img src="./assets/images/sidebar/m-credits.png"><div class="gTabsText"><p> Credits</p></div>
         </div>
-        <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="errorNA('settings')">
+        <div id="gtabs6" class="sidebarOptions sidebarBottom" onclick="settingsheader()">
             <img src="./assets/images/sidebar/m-settings.png"><div class="gTabsText"><p> Settings</p></div>
         </div>
         <div class="launcherVersion"><p>v1.4.00</p></div>
     </div>
     <div class="mainPage">
         <div class="gameHeader">
+            <p class="launcherBrand">HeloX Launcher</p>
             <p id="gameedition" class="currentGame bolded">EAGLERCRAFT: WEB EDITION</p>
                 <ul class="gameTabs">
                     <li id="header1" class="headerButtons selected" onclick="playheader()">Play</li>
@@ -96,7 +93,7 @@
         </div>
         <div id="faq">
             <p class="bolded faqtitle">Frequently Asked Questions</p>
-            <p>Here are some frequently asked questions about BNALauncher.</p>
+            <p>Here are some frequently asked questions about HeloX Launcher.</p>
             <div id="faqbox"></div>
         </div>
         <div id="installations"><div id="installationsbox"></div></div>
@@ -113,6 +110,43 @@
                 <div id="patchnotesbox"></div>
             </div>
         </div>
+        <section id="settingsPanel" class="launcherPanel" aria-labelledby="settingsTitle">
+            <h1 id="settingsTitle" class="bolded">Settings</h1>
+            <div class="launcherSetting">
+                <label for="usernameInput">Player name</label>
+                <div class="settingInline">
+                    <input id="usernameInput" type="text" maxlength="16" autocomplete="off" placeholder="Generic User">
+                    <button class="settingButton" type="button" onclick="savePlayerName()">Save name</button>
+                </div>
+            </div>
+            <div class="launcherSetting">
+                <p>Accent color</p>
+                <div class="colorOptions" role="group" aria-label="Accent color">
+                    <button class="colorSwatch" type="button" style="--swatch: #008542" aria-label="Green accent" title="Green" onclick="setAccentColor('#008542')"></button>
+                    <button class="colorSwatch" type="button" style="--swatch: #087e8b" aria-label="Teal accent" title="Teal" onclick="setAccentColor('#087e8b')"></button>
+                    <button class="colorSwatch" type="button" style="--swatch: #d97706" aria-label="Orange accent" title="Orange" onclick="setAccentColor('#d97706')"></button>
+                    <button class="colorSwatch" type="button" style="--swatch: #2563a6" aria-label="Blue accent" title="Blue" onclick="setAccentColor('#2563a6')"></button>
+                </div>
+            </div>
+            <label class="launcherSetting checkboxSetting" for="reduceMotionInput">
+                <span>Reduce motion</span>
+                <input id="reduceMotionInput" type="checkbox" onchange="setReducedMotion(this.checked)">
+            </label>
+            <p id="settingsStatus" class="settingsStatus" aria-live="polite"></p>
+        </section>
+        <section id="skinsPanel" class="launcherPanel" aria-labelledby="skinsTitle">
+            <h1 id="skinsTitle" class="bolded">Profile skins</h1>
+            <p class="panelDescription">Choose the look shown beside your player name in HeloX Launcher.</p>
+            <div class="skinOptions" role="group" aria-label="Profile skin">
+                <button class="skinOption" type="button" data-skin="emerald" onclick="setProfileSkin('emerald')"><span class="skinPreview skinEmerald"></span><span>Emerald</span></button>
+                <button class="skinOption" type="button" data-skin="ocean" onclick="setProfileSkin('ocean')"><span class="skinPreview skinOcean"></span><span>Ocean</span></button>
+                <button class="skinOption" type="button" data-skin="sunset" onclick="setProfileSkin('sunset')"><span class="skinPreview skinSunset"></span><span>Sunset</span></button>
+                <button class="skinOption" type="button" data-skin="berry" onclick="setProfileSkin('berry')"><span class="skinPreview skinBerry"></span><span>Berry</span></button>
+            </div>
+            <label class="settingButton uploadSkinButton" for="skinUpload">Upload profile image</label>
+            <input id="skinUpload" class="visuallyHidden" type="file" accept="image/*" onchange="uploadProfileSkin(this.files[0])">
+            <p id="skinStatus" class="settingsStatus" aria-live="polite"></p>
+        </section>
         <div id="gameSelection">
                 <div class="dropdownSelector" onclick="dropdowntoggle()">
                     <div style="display: flex; gap: 1vw;">
@@ -135,7 +169,7 @@
                 </div>
             <div id="dropdn" class="dropdownMenu" style="visibility: hidden;"></div>
             <a id="playbutton" href="javascript:void(0);" onClick="openPopup('mc/1.12.2')"><div id="mainbutton" class="playButton"></div></a>
-            <div class="username centeredIcon bolded"><p id="username">Generic User</p></div>
+            <div class="username centeredIcon bolded"><span id="profileAvatar" class="profileAvatar" aria-hidden="true"></span><p id="username">Generic User</p></div>
         </div>
     </div>
     <script src="./js/index.js"></script>

@@ -156,6 +156,7 @@ hr {
 }
 
 .gameHeader {padding: 1.8vw 1.8vw 0;}
+.launcherBrand {font-size: 0.78rem; font-weight: 800; color: var(--text-secondary);}
 .currentGame {font-size: 1.2vw;}
 
 .gameTabs {
@@ -299,6 +300,57 @@ hr {
         opacity: 1;
     }
 }
+
+.launcherPanel {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    box-sizing: border-box;
+    top: 10vh;
+    left: 16vw;
+    width: 84vw;
+    height: 90vh;
+    padding: 3vw;
+    overflow-y: auto;
+    background: var(--ui-main);
+    z-index: 2;
+}
+
+.launcherPanel h1 {font-size: 1.5rem;}
+.launcherSetting {display: flex; flex-direction: column; gap: 0.75rem; width: min(34rem, 100%);}
+.settingInline {display: flex; gap: 0.75rem;}
+.settingInline input {flex: 1; min-width: 0;}
+.settingInline input, .settingButton {
+    box-sizing: border-box;
+    min-height: 2.75rem;
+    border: 1px solid var(--ui-main-lighter);
+    border-radius: 4px;
+    padding: 0.65rem 0.9rem;
+    color: white;
+    background: var(--ui-main-dark);
+    font: inherit;
+}
+.settingButton {cursor: pointer; background: var(--ui-select); border-color: var(--ui-select); font-weight: 700;}
+.colorOptions, .skinOptions {display: flex; flex-wrap: wrap; gap: 0.75rem;}
+.colorSwatch {width: 2.5rem; aspect-ratio: 1; border: 2px solid transparent; border-radius: 50%; background: var(--swatch); cursor: pointer;}
+.colorSwatch.selected {outline: 2px solid white; outline-offset: 2px;}
+.checkboxSetting {flex-direction: row; align-items: center; justify-content: space-between;}
+.checkboxSetting input {width: 1.2rem; height: 1.2rem; accent-color: var(--ui-select);}
+.settingsStatus {min-height: 1.5rem; color: var(--text-secondary);}
+.panelDescription {color: var(--text-secondary);}
+.skinOption {display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 0.75rem; border: 1px solid var(--ui-main-lighter); border-radius: 4px; color: white; background: var(--ui-main-dark); font: inherit; cursor: pointer;}
+.skinOption.selected {border-color: var(--ui-select);}
+.skinPreview, .profileAvatar {display: block; width: 2.75rem; aspect-ratio: 1; border-radius: 4px; background-size: cover; background-position: center;}
+.skinEmerald {background: linear-gradient(135deg, #90d4a9 0 25%, #29845a 25% 75%, #164b3a 75%);}
+.skinOcean {background: linear-gradient(135deg, #a4d5e7 0 25%, #287f9e 25% 75%, #175169 75%);}
+.skinSunset {background: linear-gradient(135deg, #ffd08e 0 25%, #d46b45 25% 75%, #743e40 75%);}
+.skinBerry {background: linear-gradient(135deg, #e1a8ca 0 25%, #9b5279 25% 75%, #55334f 75%);}
+.uploadSkinButton {display: inline-flex; align-items: center;}
+.visuallyHidden {position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%);}
+.profileAvatar {width: 1.8rem; flex: 0 0 auto; background-color: #29845a;}
+body.reduceMotion *, body.reduceMotion *::before, body.reduceMotion *::after {animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important;}
 
 /* Mods Menu CSS */
 

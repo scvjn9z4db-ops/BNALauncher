@@ -9,7 +9,7 @@
     },
     {
        "question": "How can I contribute?",
-       "answer": "You can join my discord server to give suggestions or to help add code."
+      "answer": "You can share suggestions or contribute code through the project repository."
     },
     {
        "question": "Can I use your code?",
@@ -17,6 +17,6 @@
     },
     {
        "question": "How do I add my own mod to the modketplace?",
-       "answer": "You can suggest your mod in my discord server and it might be added."
+      "answer": "You can suggest your mod through the project repository for consideration."
     }
 ]

@@ -367,6 +367,7 @@ function eaglercontrols(){
 // Header Options
 function playheader(){
     resetHeaderSelected();
+    document.querySelector('.gameTabs').style.display = 'flex';
     generategames(launcher);
     document.getElementById('game-bg').style.display = "flex";
     document.getElementById('gameSelection').style.display = "flex";
@@ -395,6 +396,101 @@ function patchnotesheader(){
     document.getElementById('header6').classList.add('selected');
 }
 
+const profileSkins = {
+    emerald: '#29845a',
+    ocean: '#287f9e',
+    sunset: '#d46b45',
+    berry: '#9b5279'
+};
+
+function settingsheader(){
+    showLauncherPanel('settingsPanel', 'Settings');
+    document.getElementById('usernameInput').value = localStorage.getItem('playerName') || '';
+    document.getElementById('reduceMotionInput').checked = localStorage.getItem('reduceMotion') === 'true';
+}
+
+function skinsheader(){
+    resetHeaderSelected();
+    document.querySelector('.gameTabs').style.display = 'flex';
+    document.getElementById('header5').classList.add('selected');
+    document.getElementById('skinsPanel').style.display = 'flex';
+    updateSkinSelection(localStorage.getItem('profileSkin') || 'emerald');
+}
+
+function showLauncherPanel(panelId, title){
+    resetHeaderSelected();
+    document.querySelector('.gameTabs').style.display = 'none';
+    document.querySelectorAll('.sidebarOptions').forEach((option) => option.classList.remove('selected'));
+    document.getElementById('gtabs6').classList.add('selected');
+    document.getElementById('gameedition').textContent = title;
+    document.getElementById(panelId).style.display = 'flex';
+}
+
+function savePlayerName(){
+    const name = document.getElementById('usernameInput').value.trim().slice(0, 16) || 'Generic User';
+    localStorage.setItem('playerName', name);
+    document.getElementById('username').textContent = name;
+    document.getElementById('settingsStatus').textContent = 'Player name saved.';
+}
+
+function setAccentColor(color){
+    document.body.style.setProperty('--ui-select', color);
+    localStorage.setItem('accentColor', color);
+    document.querySelectorAll('.colorSwatch').forEach((swatch) => {
+        swatch.classList.toggle('selected', swatch.style.getPropertyValue('--swatch') === color);
+    });
+}
+
+function setReducedMotion(enabled){
+    document.body.classList.toggle('reduceMotion', enabled);
+    localStorage.setItem('reduceMotion', String(enabled));
+}
+
+function setProfileSkin(skin){
+    if (!profileSkins[skin]) return;
+    localStorage.setItem('profileSkin', skin);
+    localStorage.removeItem('customProfileSkin');
+    applyProfileSkin(skin);
+    updateSkinSelection(skin);
+}
+
+function uploadProfileSkin(file){
+    if (!file) return;
+    if (!file.type.startsWith('image/') || file.size > 1024 * 1024){
+        document.getElementById('skinStatus').textContent = 'Choose an image smaller than 1 MB.';
+        return;
+    }
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        localStorage.setItem('customProfileSkin', reader.result);
+        document.getElementById('profileAvatar').style.backgroundImage = `url("${reader.result}")`;
+        document.querySelectorAll('.skinOption').forEach((option) => option.classList.remove('selected'));
+        document.getElementById('skinStatus').textContent = 'Profile image saved.';
+    });
+    reader.readAsDataURL(file);
+}
+
+function applyProfileSkin(skin){
+    const avatar = document.getElementById('profileAvatar');
+    avatar.style.backgroundImage = '';
+    avatar.style.backgroundColor = profileSkins[skin] || profileSkins.emerald;
+    const customSkin = localStorage.getItem('customProfileSkin');
+    if (customSkin) avatar.style.backgroundImage = `url("${customSkin}")`;
+}
+
+function updateSkinSelection(skin){
+    document.querySelectorAll('.skinOption').forEach((option) => {
+        option.classList.toggle('selected', option.dataset.skin === skin && !localStorage.getItem('customProfileSkin'));
+    });
+}
+
+function loadLauncherPreferences(){
+    document.getElementById('username').textContent = localStorage.getItem('playerName') || 'Generic User';
+    setAccentColor(localStorage.getItem('accentColor') || '#008542');
+    setReducedMotion(localStorage.getItem('reduceMotion') === 'true');
+    applyProfileSkin(localStorage.getItem('profileSkin') || 'emerald');
+}
+
 // Dropdown game options toggle
 function dropdowntoggle(){
     if (dropdown.style.visibility === 'hidden') {
@@ -410,12 +506,10 @@ function dropdowntoggle(){
 function resetTabSelected() {
     while (dropdown.firstChild) {dropdown.removeChild(dropdown.firstChild)};
     while (installations.firstChild) {installations.removeChild(installations.firstChild)};
-    for (var i = 1; i < 6; i++) { 
-        let gtabs = document.getElementById('gtabs' + [i]);
-        let headers = document.getElementById('header' + [i]);
-        gtabs.classList.remove('selected');
-        headers.style.display = "block";
-    };
+    document.querySelectorAll('.sidebarOptions').forEach((option) => option.classList.remove('selected'));
+    for (var i = 1; i < 6; i++) {
+        document.getElementById('header' + i).style.display = "block";
+    }
     playheader();
 }
 
@@ -433,7 +527,11 @@ function resetHeaderSelected() {
     document.getElementById('faq').style.display = "none";
     document.getElementById('installations').style.display = "none";
     document.getElementById('patchNotes').style.display = "none";
+    document.getElementById('settingsPanel').style.display = "none";
+    document.getElementById('skinsPanel').style.display = "none";
 }
+
+loadLauncherPreferences();
 
 // Prevents touchscreen move
 window.addEventListener("scroll", preventMotion, false);

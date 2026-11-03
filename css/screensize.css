@@ -53,6 +53,11 @@ hr {
     width: 94.5vw;
 }
 
+.launcherPanel {
+  left: 5.5vw;
+  width: 94.5vw;
+}
+
 .currentGame {
   font-size: 1.4vw;
 }
