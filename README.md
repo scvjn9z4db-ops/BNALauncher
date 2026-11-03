@@ -21,7 +21,7 @@
  Future plans for offline file processing may be possible!
 
 ## Vercel Deployment
-The launcher is a single `index.html` file with inline CSS and JavaScript. Vercel uploads exclude `assets/` and `mc/`; the launcher loads its game data, images, and game clients from this public GitHub repository through GitHack. Keep the repository public and update the `<base>` URL in `index.html` if the repository owner or name changes.
+The launcher is a single `index.html` file with inline CSS and JavaScript. Vercel uploads exclude `assets/` and `mc/`; game data and images load from this public GitHub repository through GitHack, while `vercel.json` proxies game paths from `/mc/` to GitHub. Keep the repository public and update the GitHub URLs in `index.html` and `vercel.json` if the repository owner or name changes.
 
 <hr>
 

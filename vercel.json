@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/mc/:path*",
+      "destination": "https://raw.githack.com/scvjn9z4db-ops/BNALauncher/main/mc/:path*"
+    }
+  ]
+}
