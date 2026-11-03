@@ -20,6 +20,9 @@
  Currently, you can only download the repository for the source code.<br>
  Future plans for offline file processing may be possible!
 
+## Vercel Deployment
+The `mc/` directory is excluded from Vercel uploads. Game clients stay in this public GitHub repository and are loaded from GitHack, so keep the repository public and update `gameAssetBase` in `index.html` if the repository owner or name changes.
+
 <hr>
 
 ## Features Planned

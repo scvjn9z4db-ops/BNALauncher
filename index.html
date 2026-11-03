@@ -168,12 +168,14 @@
                     </div>
                 </div>
             <div id="dropdn" class="dropdownMenu" style="visibility: hidden;"></div>
-            <a id="playbutton" href="javascript:void(0);" onClick="openPopup('mc/1.12.2')"><div id="mainbutton" class="playButton"></div></a>
+            <a id="playbutton" href="javascript:void(0);" onClick="openPopup('mc/1.12.2/')"><div id="mainbutton" class="playButton"></div></a>
             <div class="username centeredIcon bolded"><span id="profileAvatar" class="profileAvatar" aria-hidden="true"></span><p id="username">Generic User</p></div>
         </div>
     </div>
     <script src="./js/index.js"></script>
     <script>
+        const gameAssetBase = 'https://raw.githack.com/scvjn9z4db-ops/BNALauncher/main/';
+
         function openPopup(url) {
             var width = 600;
             var height = 400;
@@ -185,7 +187,9 @@
                                  ',top=' + top + ',left=' + left + 
                                  ',resizable=yes,scrollbars=yes,status=yes';
             
-            var newWindow = window.open(url, '_blank', windowFeatures);
+            var gameUrl = new URL(url, gameAssetBase);
+            if (gameUrl.pathname.endsWith('/')) gameUrl.pathname += 'index.html';
+            var newWindow = window.open(gameUrl.href, '_blank', windowFeatures);
             
             if (newWindow) {
                 newWindow.focus();

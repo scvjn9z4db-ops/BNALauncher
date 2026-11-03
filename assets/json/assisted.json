@@ -3,7 +3,7 @@
        "title": "FlamedDogo's Mobile UI",
        "version": "1.8.8-v3.0.5b",
        "icon": "./assets/images/icons/dogos-mobile.png",
-       "link": "./mc/mc/1.8.8/?userscript=flameddogo99-eaglermobile.js",
+         "link": "./mc/1.8.8/?userscript=flameddogo99-eaglermobile.js",
        "active": true
     },
     {
@@ -17,7 +17,7 @@
        "title": "Red's Controller Support",
        "version": "1.8.8-v1.1",
        "icon": "./assets/images/icons/reds-controller.png",
-       "link": "./mc/?userscript=irv77-eaglerconsole.js",
+         "link": "./mc/1.8.8/?userscript=irv77-eaglerconsole.js",
        "active": true
     }
  ]
