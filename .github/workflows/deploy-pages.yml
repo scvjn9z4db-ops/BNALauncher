@@ -22,14 +22,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
         with:
           enablement: true
       - name: Prepare site
         run: |
           mkdir -p site
-          cp index.html play.html site/
+          curl --fail --location --retry 3 "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/index.html" --output site/index.html
+          curl --fail --location --retry 3 "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_SHA}/play.html" --output site/play.html
           touch site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
