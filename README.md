@@ -48,4 +48,4 @@ The launcher is a single `index.html` file with inline CSS and JavaScript. Verce
 
 <hr>
 
->__Finally, [here](https://bna-launcher.vercel.app) is the live version of the code!__
+>__Live launcher: [HeloX Launcher](https://scvjn9z4db-ops.github.io/BNALauncher/)__
