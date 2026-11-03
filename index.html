@@ -1621,6 +1621,8 @@ console.clear();
 
 </script>
     <script>
+        const githubPagesHost = window.location.hostname.endsWith('.github.io');
+        const githubGameAssetBase = 'https://raw.githack.com/scvjn9z4db-ops/BNALauncher/main/';
         const gameAssetBase = `${window.location.origin}/`;
 
         function openPopup(url) {
@@ -1636,6 +1638,12 @@ console.clear();
 
             var gameUrl = new URL(url, gameAssetBase);
             if (gameUrl.pathname.endsWith('/')) gameUrl.pathname += 'index.html';
+            if (githubPagesHost) {
+                var githubGameUrl = new URL(url, githubGameAssetBase);
+                if (githubGameUrl.pathname.endsWith('/')) githubGameUrl.pathname += 'index.html';
+                gameUrl = new URL('play.html', new URL('./', window.location.href));
+                gameUrl.searchParams.set('game', githubGameUrl.href);
+            }
             var newWindow = window.open(gameUrl.href, '_blank', windowFeatures);
 
             if (newWindow) {

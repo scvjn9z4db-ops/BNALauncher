@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>HeloX Launcher | Game</title>
+    <style>
+        html, body, iframe { width: 100%; height: 100%; margin: 0; border: 0; }
+        body { overflow: hidden; background: #000; }
+        iframe { display: block; }
+        #error { display: none; padding: 2rem; color: #fff; font: 16px sans-serif; }
+    </style>
+</head>
+<body>
+    <p id="error">This game link is not valid.</p>
+    <script>
+        const gameBase = 'https://raw.githack.com/scvjn9z4db-ops/BNALauncher/main/';
+        const gameRoot = new URL('mc/', gameBase);
+        const requestedGame = new URLSearchParams(window.location.search).get('game');
+        let gameUrl;
+        try {
+            gameUrl = new URL(requestedGame);
+        } catch {}
+
+        if (gameUrl && gameUrl.origin === gameRoot.origin && gameUrl.pathname.startsWith(gameRoot.pathname)) {
+            const frame = document.createElement('iframe');
+            frame.title = 'HeloX game';
+            frame.allow = 'fullscreen; gamepad; pointer-lock';
+            frame.allowFullscreen = true;
+            frame.src = gameUrl.href;
+            document.body.appendChild(frame);
+        } else {
+            document.getElementById('error').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
